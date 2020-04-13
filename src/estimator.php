@@ -8,33 +8,35 @@ function covid19ImpactEstimator($data)
   $region              = $data['region'];
   $avgDailyIncomeInUSD = $region['avgDailyIncomeInUSD'];
 
- 
+
 
 
   // challenge one
-  $currentlyInfected      = $data['reportedCases'] * 10;
-  $s_currentlyInfected    = $data['reportedCases'] * 50; 
-
-
-  if($periodType == "months"){
-    $timeToElapse *= 30;
-  }elseif($periodType == "weeks"){
-    $timeToElapse *=7;
-  }
-
-  $day = (int) ($timeToElapse / 3);
-
-  $infectionsByRequestedTime   = (int) ( $currentlyInfected   * pow(2,$day) );
-  $s_infectionsByRequestedTime = (int) ( $s_currentlyInfected * pow(2,$day) );
-
-  $impact = [
-      $currentlyInfected,
-      $infectionsByRequestedTime
-  ];
-
-  $data =[
-      'impact' => $impact
-  ];
+//  $currentlyInfected      = $data['reportedCases'] * 10;
+//  $s_currentlyInfected    = $data['reportedCases'] * 50;
+//
+//
+//  if($periodType == "months"){
+//    $timeToElapse *= 30;
+//  }elseif($periodType == "weeks"){
+//    $timeToElapse *=7;
+//  }
+//
+//  $day = (int) ($timeToElapse / 3);
+//
+//  $infectionsByRequestedTime   = (int) ( $currentlyInfected   * pow(2,$day) );
+//  $s_infectionsByRequestedTime = (int) ( $s_currentlyInfected * pow(2,$day) );
+//
+//  $impact = [
+//      'currentlyInfected'         => $currentlyInfected,
+//      'infectionsByRequestedTime' => $infectionsByRequestedTime
+//  ];
+//
+//  $data =[
+//      'data'   => $data,
+//      'impact' => $impact,
+//      'severeImpact' =>
+//  ];
 
 
    // challenge two
