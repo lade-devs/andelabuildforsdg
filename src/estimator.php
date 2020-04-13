@@ -2,8 +2,8 @@
 
 function covid19ImpactEstimator($data)
 {
-    $impact = array(
-        'impact' => ''
+    $data = array(
+        'impact' => 'check'
     );
 //  $periodType          = $data['periodType'];
 //  $timeToElapse        = $data['timeToElapse'];
