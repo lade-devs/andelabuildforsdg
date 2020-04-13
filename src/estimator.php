@@ -29,12 +29,12 @@ function covid19ImpactEstimator($data)
   $infectionsByRequestedTime   = (int) ( $currentlyInfected   * pow(2,$day) );
   $s_infectionsByRequestedTime = (int) ( $s_currentlyInfected * pow(2,$day) );
 
-  $impact[] = [
+  $impact = [
       $currentlyInfected,
       $infectionsByRequestedTime
   ];
 
-  $data[] =[
+  $data =[
       'impact' => $impact
   ];
 
