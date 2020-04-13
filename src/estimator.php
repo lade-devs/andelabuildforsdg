@@ -8,9 +8,15 @@ function covid19ImpactEstimator($data)
   $region              = $data['region'];
   $avgDailyIncomeInUSD = $region['avgDailyIncomeInUSD'];
 
+  $data         = array();
+  $impact       = array();
+  $severeImpact = array();
+
+
   // challenge one
   $currentlyInfected      = $data['reportedCases'] * 10;
   $s_currentlyInfected    = $data['reportedCases'] * 50; 
+
 
   if($periodType == "months"){
     $timeToElapse *= 30;
@@ -22,6 +28,16 @@ function covid19ImpactEstimator($data)
 
   $infectionsByRequestedTime   = (int) ( $currentlyInfected   * pow(2,$day) );
   $s_infectionsByRequestedTime = (int) ( $s_currentlyInfected * pow(2,$day) );
+
+  $impact[] = [
+      $currentlyInfected,
+      $infectionsByRequestedTime
+  ];
+
+  $data[] =[
+      'impact' => $impact
+  ];
+
 
    // challenge two
    $severeCasesByRequestedTime    = (int) ( (15/100) * $infectionsByRequestedTime );
