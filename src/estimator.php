@@ -5,19 +5,19 @@ function covid19ImpactEstimator($data)
   $periodType          = $data['periodType'];
   $timeToElapse        = $data['timeToElapse'];
   $totalHospitalBeds   = $data['totalHospitalBeds'];
-  $region              = json_decode($data['region']);
+  $region              = $data['region'];
   $avgDailyIncomeInUSD = $region['avgDailyIncomeInUSD'];
 
   // challenge one
   $currentlyInfected      = $data['reportedCases'] * 10;
   $s_currentlyInfected    = $data['reportedCases'] * 50; 
 
-  if($periodType == "month"){
+  if($periodType == "months"){
     $timeToElapse *= 30;
-  }elseif($periodType == "week"){
+  }elseif($periodType == "weeks"){
     $timeToElapse *=7;
   }
-  
+
   $day = (int) ($timeToElapse / 3);
 
   $infectionsByRequestedTime   = (int) ( $currentlyInfected   * pow(2,$day) );
