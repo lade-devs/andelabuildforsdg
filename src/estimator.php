@@ -8,9 +8,7 @@ function covid19ImpactEstimator($data)
   $region              = $data['region'];
   $avgDailyIncomeInUSD = $region['avgDailyIncomeInUSD'];
 
-  $data         = array();
-  $impact       = array();
-  $severeImpact = array();
+ 
 
 
   // challenge one
@@ -38,7 +36,6 @@ function covid19ImpactEstimator($data)
       'impact' => $impact
   ];
 
-    $data = json_encode($data);
 
    // challenge two
 //   $severeCasesByRequestedTime    = (int) ( (15/100) * $infectionsByRequestedTime );
