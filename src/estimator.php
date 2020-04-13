@@ -50,14 +50,14 @@ function covid19ImpactEstimator($data_value)
    $severeCasesByRequestedTime    = (int) ( (15/100) * $infectionsByRequestedTime );
    $s_severeCasesByRequestedTime  = (int) ( (15/100) * $s_infectionsByRequestedTime );
 
-   $impact = array(
-       'severeCasesByRequestedTime' => $severeCasesByRequestedTime
-   );
+//   $impact = array(
+//       'severeCasesByRequestedTime' => $severeCasesByRequestedTime
+//   );
 
 //   $impact['severeCasesByRequestedTime']      = $severeCasesByRequestedTime;
 //   $severImpact['severeCasesByRequestedTime'] = $s_severeCasesByRequestedTime;
 
-    $data['impact']       = $impact;
+    $data['severeCasesByRequestedTime']       = $severeCasesByRequestedTime;
 //    $data['severeImpact'] = $severImpact;
 
 
