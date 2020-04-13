@@ -1,46 +1,49 @@
 <?php
 
-function covid19ImpactEstimator($data)
+function covid19ImpactEstimator($data_value)
 {
-    $data = array(
-        'impact'       => 'check',
-        'severeImpact' => 'why'
-    );
-//  $periodType          = $data['periodType'];
-//  $timeToElapse        = $data['timeToElapse'];
-//  $totalHospitalBeds   = $data['totalHospitalBeds'];
-//  $region              = $data['region'];
-//  $avgDailyIncomeInUSD = $region['avgDailyIncomeInUSD'];
+
+ $data = array();
+
+  $periodType          = $data_value['periodType'];
+  $timeToElapse        = $data_value['timeToElapse'];
+  $totalHospitalBeds   = $data_value['totalHospitalBeds'];
+  $region              = $data_value['region'];
+  $avgDailyIncomeInUSD = $region['avgDailyIncomeInUSD'];
 
 
 
 
   // challenge one
-//  $currentlyInfected      = $data['reportedCases'] * 10;
-//  $s_currentlyInfected    = $data['reportedCases'] * 50;
-//
-//
-//  if($periodType == "months"){
-//    $timeToElapse *= 30;
-//  }elseif($periodType == "weeks"){
-//    $timeToElapse *=7;
-//  }
-//
-//  $day = (int) ($timeToElapse / 3);
-//
-//  $infectionsByRequestedTime   = (int) ( $currentlyInfected   * pow(2,$day) );
-//  $s_infectionsByRequestedTime = (int) ( $s_currentlyInfected * pow(2,$day) );
-//
-//  $impact = [
-//      'currentlyInfected'         => $currentlyInfected,
-//      'infectionsByRequestedTime' => $infectionsByRequestedTime
-//  ];
-//
-//  $data =[
-//      'data'   => $data,
-//      'impact' => $impact,
-//      'severeImpact' =>
-//  ];
+  $currentlyInfected      = $data_value['reportedCases'] * 10;
+  $s_currentlyInfected    = $data_value['reportedCases'] * 50;
+
+
+
+
+  if($periodType == "months"){
+    $timeToElapse *= 30;
+  }elseif($periodType == "weeks"){
+    $timeToElapse *=7;
+  }
+
+  $day = (int) ($timeToElapse / 3);
+
+  $infectionsByRequestedTime   = (int) ( $currentlyInfected   * pow(2,$day) );
+  $s_infectionsByRequestedTime = (int) ( $s_currentlyInfected * pow(2,$day) );
+
+
+  $impact = array(
+        'currentlyInfected'         => $currentlyInfected,
+        'infectionsByRequestedTime' => $infectionsByRequestedTime
+  );
+  $severImpact = array(
+      'currentlyInfected'         => $s_currentlyInfected,
+      'infectionsByRequestedTime' => $s_infectionsByRequestedTime
+  );
+
+    $data['impact']       = $impact;
+    $data['severeImpact'] = $severImpact;
 
 
    // challenge two
