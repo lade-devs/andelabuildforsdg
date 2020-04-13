@@ -2,11 +2,11 @@
 
 function covid19ImpactEstimator($data)
 {
-  $periodType          = $data['periodType'];
-  $timeToElapse        = $data['timeToElapse'];
-  $totalHospitalBeds   = $data['totalHospitalBeds'];
-  $region              = $data['region'];
-  $avgDailyIncomeInUSD = $region['avgDailyIncomeInUSD'];
+//  $periodType          = $data['periodType'];
+//  $timeToElapse        = $data['timeToElapse'];
+//  $totalHospitalBeds   = $data['totalHospitalBeds'];
+//  $region              = $data['region'];
+//  $avgDailyIncomeInUSD = $region['avgDailyIncomeInUSD'];
 
 
 
