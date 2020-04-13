@@ -2,6 +2,9 @@
 
 function covid19ImpactEstimator($data)
 {
+    $array = array(
+        'impact' => ''
+    );
 //  $periodType          = $data['periodType'];
 //  $timeToElapse        = $data['timeToElapse'];
 //  $totalHospitalBeds   = $data['totalHospitalBeds'];
