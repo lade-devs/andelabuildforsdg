@@ -81,7 +81,7 @@ function covid19ImpactEstimator($data_value)
         "dollarsInFlight"                    => (int)$dollarsInFlight
     ];
 
-    $severeImpact= [
+    $severeImpact = [
         "currentlyInfected"                  => $s_currentlyInfected,
         "infectionsByRequestedTime"          => (int)$s_infectionsByRequestedTime,
         "severeCasesByRequestedTime"         => (int)$s_severeCasesByRequestedTime,
