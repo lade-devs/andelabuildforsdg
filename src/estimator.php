@@ -3,14 +3,13 @@
 function covid19ImpactEstimator($data_value)
 {
 
- $data = array();
+
 
   $periodType               = $data_value['periodType'];
   $timeToElapse             = $data_value['timeToElapse'];
   $totalHospitalBeds        = $data_value['totalHospitalBeds'];
-  $region                   = $data_value['region'];
-  $avgDailyIncomeInUSD      = $region['avgDailyIncomeInUSD'];
-  $avgDailyIncomePopulation = $region['avgDailyIncomePopulation'];
+  $avgDailyIncomeInUSD      = $data_value["region"]["avgDailyIncomeInUSD"];
+  $avgDailyIncomePopulation = $data_value["region"]["avgDailyIncomePopulation"];
 
 
 
@@ -34,17 +33,6 @@ function covid19ImpactEstimator($data_value)
   $s_infectionsByRequestedTime = (int) ( $s_currentlyInfected * pow(2,$day) );
 
 
-  $impact = array(
-        'currentlyInfected'         => $currentlyInfected,
-        'infectionsByRequestedTime' => $infectionsByRequestedTime
-  );
-  $severImpact = array(
-      'currentlyInfected'         => $s_currentlyInfected,
-      'infectionsByRequestedTime' => $s_infectionsByRequestedTime
-  );
-
-    $data['impact']       = $impact;
-    $data['severeImpact'] = $severImpact;
 
 
    // challenge two
@@ -55,8 +43,6 @@ function covid19ImpactEstimator($data_value)
    $impact['severeCasesByRequestedTime']       = $severeCasesByRequestedTime;
    $severImpact['severeCasesByRequestedTime']  = $s_severeCasesByRequestedTime;
 
-   $data['impact']       = $impact;
-   $data['severeImpact'] = $severImpact;
 
 
 
@@ -68,8 +54,6 @@ function covid19ImpactEstimator($data_value)
     $impact['hospitalBedsByRequestedTime']      = ($hospitalBedsByRequestedTime);
     $severImpact['hospitalBedsByRequestedTime'] = ($s_hospitalBedsByRequestedTime);
 
-    $data['impact']       = ($impact);
-    $data['severeImpact'] = ($severImpact);
 
    // challenge three
     $casesForICUByRequestedTime   = (int) ( (5/100) * $infectionsByRequestedTime );
@@ -78,26 +62,38 @@ function covid19ImpactEstimator($data_value)
     $impact['casesForICUByRequestedTime']      = $casesForICUByRequestedTime;
     $severImpact['casesForICUByRequestedTime'] = $s_casesForICUByRequestedTime;
 
-    $data['impact']       = $impact;
-    $data['severeImpact'] = $severImpact;
 
     $casesForVentilatorsByRequestedTime   = (int) ( (2/100) * $infectionsByRequestedTime );
     $s_casesForVentilatorsByRequestedTime = (int) ( (2/100) * $s_infectionsByRequestedTime );
 
-    $impact['casesForVentilatorsByRequestedTime']      = $casesForVentilatorsByRequestedTime;
-    $severImpact['casesForVentilatorsByRequestedTime'] = $s_casesForVentilatorsByRequestedTime;
-
-    $data['impact']       = $impact;
-    $data['severeImpact'] = $severImpact;
 
     $dollarsInFlight   = (int) ( ($infectionsByRequestedTime * $avgDailyIncomePopulation * $avgDailyIncomeInUSD) / $timeToElapse );
     $s_dollarsInFlight = (int) ( ($s_infectionsByRequestedTime * $avgDailyIncomePopulation * $avgDailyIncomeInUSD) / $timeToElapse );
 
-    $impact['dollarsInFlight']      = $dollarsInFlight;
-    $severImpact['dollarsInFlight'] = $s_dollarsInFlight;
 
-    $data['impact']       = $impact;
-    $data['severeImpact'] = $severImpact;
+    $impact = [
+        "currentlyInfected"                  => $currentlyInfected,
+        "infectionsByRequestedTime"          => (int)$infectionsByRequestedTime,
+        "severeCasesByRequestedTime"         => (int)$severeCasesByRequestedTime,
+        "hospitalBedsByRequestedTime"        => (int)$hospitalBedsByRequestedTime,
+        "casesForICUByRequestedTime"         => (int)$casesForICUByRequestedTime,
+        "casesForVentilatorsByRequestedTime" => (int)$casesForVentilatorsByRequestedTime,
+        "dollarsInFlight"                    => (int)$dollarsInFlight
+    ];
 
-  return $data;
+    $severeImpact= [
+        "currentlyInfected"                  => $s_currentlyInfected,
+        "infectionsByRequestedTime"          => (int)$s_infectionsByRequestedTime,
+        "severeCasesByRequestedTime"         => (int)$s_severeCasesByRequestedTime,
+        "hospitalBedsByRequestedTime"        => (int)$s_hospitalBedsByRequestedTime,
+        "casesForICUByRequestedTime"         => (int)$s_casesForICUByRequestedTime,
+        "casesForVentilatorsByRequestedTime" => (int)$s_casesForVentilatorsByRequestedTime,
+        "dollarsInFlight"                    => (int)$s_dollarsInFlight
+    ];
+
+  return array(
+      "data"         =>$data_value,
+      "impact"       => $impact,
+      "severeImpact" => $severeImpact
+  );
 }
