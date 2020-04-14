@@ -58,15 +58,16 @@ function covid19ImpactEstimator($data_value)
    $data['severeImpact'] = $severImpact;
 
 
-   $used_bed = (int) (0.65 * 90);
+    $capacity = 0.95 + 0.90;
+    $totalHospitalBeds = (int) ($totalHospitalBeds - $capacity);
 
-   $availabe_bed = $totalHospitalBeds - $used_bed;
+    $available_bed = (int) ( (0.45) * $totalHospitalBeds );
 
-//    $hospitalBedsByRequestedTime   = $used_bed - $severeCasesByRequestedTime;
-//    $s_hospitalBedsByRequestedTime = $used_bed - $s_severeCasesByRequestedTime;
+    $hospitalBedsByRequestedTime   = $available_bed - $severeCasesByRequestedTime;
+    $s_hospitalBedsByRequestedTime = $available_bed - $s_severeCasesByRequestedTime;
 
-    $impact['hospitalBedsByRequestedTime']      = $availabe_bed;
-    $severImpact['hospitalBedsByRequestedTime'] = $availabe_bed;
+    $impact['hospitalBedsByRequestedTime']      = $hospitalBedsByRequestedTime;
+    $severImpact['hospitalBedsByRequestedTime'] = $s_hospitalBedsByRequestedTime;
 
     $data['impact']       = $impact;
     $data['severeImpact'] = $severImpact;
