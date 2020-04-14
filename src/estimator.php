@@ -58,16 +58,16 @@ function covid19ImpactEstimator($data_value)
    $data['severeImpact'] = $severImpact;
 
 
-//    $availableBeds                 = (int) ( (95/100) * $totalHospitalBeds );
-//    $availableBeds                 = (int) ( (35/100) * $availableBeds );
-//    $hospitalBedsByRequestedTime   = $availableBeds - $severeCasesByRequestedTime;
-//    $s_hospitalBedsByRequestedTime = $availableBeds - $s_severeCasesByRequestedTime;
-//
-//    $impact['hospitalBedsByRequestedTime']      = $hospitalBedsByRequestedTime;
-//    $severImpact['hospitalBedsByRequestedTime'] = $s_hospitalBedsByRequestedTime;
-//
-//    $data['impact']       = $impact;
-//    $data['severeImpact'] = $severImpact;
+    $availableBeds                 = (int) ( (95/100) * $totalHospitalBeds );
+    $availableBeds                 = (int) ( (35/100) * $availableBeds );
+    $hospitalBedsByRequestedTime   = $availableBeds - $severeCasesByRequestedTime;
+    $s_hospitalBedsByRequestedTime = $availableBeds - $s_severeCasesByRequestedTime;
+
+    $impact['hospitalBedsByRequestedTime']      = $hospitalBedsByRequestedTime;
+    $severImpact['hospitalBedsByRequestedTime'] = $s_hospitalBedsByRequestedTime;
+
+    $data['impact']       = $impact;
+    $data['severeImpact'] = $severImpact;
 //
 //   // challenge three
 //    $casesForICUByRequestedTime   = (int) ( (5/100) * $infectionsByRequestedTime );
