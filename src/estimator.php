@@ -61,52 +61,42 @@ function covid19ImpactEstimator($data_value)
 
     $available_bed = (int) ( (0.35) * $totalHospitalBeds );
 
-    $hospitalBedsByRequestedTime   = $available_bed - $severeCasesByRequestedTime;
-    $s_hospitalBedsByRequestedTime = $available_bed - $s_severeCasesByRequestedTime;
+    $hospitalBedsByRequestedTime   = (int) ($available_bed - $severeCasesByRequestedTime);
+    $s_hospitalBedsByRequestedTime = (int) ($available_bed - $s_severeCasesByRequestedTime);
 
     $impact['hospitalBedsByRequestedTime']      = $hospitalBedsByRequestedTime;
     $severImpact['hospitalBedsByRequestedTime'] = $s_hospitalBedsByRequestedTime;
 
     $data['impact']       = $impact;
     $data['severeImpact'] = $severImpact;
-//
-//   // challenge three
-//    $casesForICUByRequestedTime   = (int) ( (5/100) * $infectionsByRequestedTime );
-//    $s_casesForICUByRequestedTime = (int) ( (5/100) * $s_infectionsByRequestedTime );
-//
-//    $casesForVentilatorsByRequestedTime   = (int) ( (2/100) * $infectionsByRequestedTime );
-//    $s_casesForVentilatorsByRequestedTime = (int) ( (2/100) * $s_infectionsByRequestedTime );
-//
-//    $dollarsInFlight   = (int) ( ($infectionsByRequestedTime * 0.65 * $avgDailyIncomeInUSD) / $timeToElapse );
-//    $s_dollarsInFlight = (int) ( ($s_infectionsByRequestedTime * 0.65 * $avgDailyIncomeInUSD) / $timeToElapse );
-//
-//    // storing the estimation output
-//    $impact[] = [
-//        $currentlyInfected,
-//        $infectionsByRequestedTime,
-//        $severeCasesByRequestedTime,
-//        $hospitalBedsByRequestedTime,
-//        $casesForICUByRequestedTime,
-//        $casesForVentilatorsByRequestedTime,
-//        $dollarsInFlight
-//    ];
-//
-//    $severeImpact[] =[
-//        $s_currentlyInfected,
-//        $s_infectionsByRequestedTime,
-//        $s_severeCasesByRequestedTime,
-//        $s_hospitalBedsByRequestedTime,
-//        $s_casesForICUByRequestedTime,
-//        $s_casesForVentilatorsByRequestedTime,
-//        $s_dollarsInFlight
-//    ];
-//
-//    // Final output
-//    $data[] = [
-//        $data,
-//        $impact,
-//        $severeImpact
-//        ];
+
+   // challenge three
+    $casesForICUByRequestedTime   = (int) ( (5/100) * $infectionsByRequestedTime );
+    $s_casesForICUByRequestedTime = (int) ( (5/100) * $s_infectionsByRequestedTime );
+
+    $impact['casesForICUByRequestedTime']      = $casesForICUByRequestedTime;
+    $severImpact['casesForICUByRequestedTime'] = $s_casesForICUByRequestedTime;
+
+    $data['impact']       = $impact;
+    $data['severeImpact'] = $severImpact;
+
+    $casesForVentilatorsByRequestedTime   = (int) ( (2/100) * $infectionsByRequestedTime );
+    $s_casesForVentilatorsByRequestedTime = (int) ( (2/100) * $s_infectionsByRequestedTime );
+
+    $impact['casesForVentilatorsByRequestedTime']      = $casesForVentilatorsByRequestedTime;
+    $severImpact['casesForVentilatorsByRequestedTime'] = $s_casesForVentilatorsByRequestedTime;
+
+    $data['impact']       = $impact;
+    $data['severeImpact'] = $severImpact;
+
+    $dollarsInFlight   = (int) ( ($infectionsByRequestedTime * 0.65 * $avgDailyIncomeInUSD) / $timeToElapse );
+    $s_dollarsInFlight = (int) ( ($s_infectionsByRequestedTime * 0.65 * $avgDailyIncomeInUSD) / $timeToElapse );
+
+    $impact['dollarsInFlight']      = $dollarsInFlight;
+    $severImpact['dollarsInFlight'] = $s_dollarsInFlight;
+
+    $data['impact']       = $impact;
+    $data['severeImpact'] = $severImpact;
 
   return $data;
 }
