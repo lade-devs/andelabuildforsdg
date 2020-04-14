@@ -46,7 +46,7 @@ function covid19ImpactEstimator($data_value)
 
 
 
-    $available_bed = (int) ( (35/100) * $totalHospitalBeds );
+    $available_bed =  ( (35/100) * $totalHospitalBeds );
 
     $hospitalBedsByRequestedTime   =  ($available_bed - $severeCasesByRequestedTime);
     $s_hospitalBedsByRequestedTime =  ($available_bed - $s_severeCasesByRequestedTime);
@@ -56,19 +56,19 @@ function covid19ImpactEstimator($data_value)
 
 
    // challenge three
-    $casesForICUByRequestedTime   = (int) ( (5/100) * $infectionsByRequestedTime );
-    $s_casesForICUByRequestedTime = (int) ( (5/100) * $s_infectionsByRequestedTime );
+    $casesForICUByRequestedTime   = floor( (5/100) * $infectionsByRequestedTime );
+    $s_casesForICUByRequestedTime = floor( (5/100) * $s_infectionsByRequestedTime );
 
     $impact['casesForICUByRequestedTime']      = $casesForICUByRequestedTime;
     $severImpact['casesForICUByRequestedTime'] = $s_casesForICUByRequestedTime;
 
 
-    $casesForVentilatorsByRequestedTime   = (int) ( (2/100) * $infectionsByRequestedTime );
-    $s_casesForVentilatorsByRequestedTime = (int) ( (2/100) * $s_infectionsByRequestedTime );
+    $casesForVentilatorsByRequestedTime   = floor( (2/100) * $infectionsByRequestedTime );
+    $s_casesForVentilatorsByRequestedTime = floor( (2/100) * $s_infectionsByRequestedTime );
 
 
-    $dollarsInFlight   = (int) ( ($infectionsByRequestedTime * $avgDailyIncomePopulation * $avgDailyIncomeInUSD) / $timeToElapse );
-    $s_dollarsInFlight = (int) ( ($s_infectionsByRequestedTime * $avgDailyIncomePopulation * $avgDailyIncomeInUSD) / $timeToElapse );
+    $dollarsInFlight   = floor( ($infectionsByRequestedTime * $avgDailyIncomePopulation * $avgDailyIncomeInUSD) / $timeToElapse );
+    $s_dollarsInFlight = floor( ($s_infectionsByRequestedTime * $avgDailyIncomePopulation * $avgDailyIncomeInUSD) / $timeToElapse );
 
 
     $impact = [
