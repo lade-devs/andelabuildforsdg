@@ -5,11 +5,12 @@ function covid19ImpactEstimator($data_value)
 
  $data = array();
 
-  $periodType          = $data_value['periodType'];
-  $timeToElapse        = $data_value['timeToElapse'];
-  $totalHospitalBeds   = $data_value['totalHospitalBeds'];
-  $region              = $data_value['region'];
-  $avgDailyIncomeInUSD = $region['avgDailyIncomeInUSD'];
+  $periodType               = $data_value['periodType'];
+  $timeToElapse             = $data_value['timeToElapse'];
+  $totalHospitalBeds        = $data_value['totalHospitalBeds'];
+  $region                   = $data_value['region'];
+  $avgDailyIncomeInUSD      = $region['avgDailyIncomeInUSD'];
+  $avgDailyIncomePopulation = $region['avgDailyIncomePopulation'];
 
 
 
@@ -64,8 +65,8 @@ function covid19ImpactEstimator($data_value)
     $hospitalBedsByRequestedTime   = (int) ($available_bed - $severeCasesByRequestedTime);
     $s_hospitalBedsByRequestedTime = (int) ($available_bed - $s_severeCasesByRequestedTime);
 
-    $impact['hospitalBedsByRequestedTime']      = $hospitalBedsByRequestedTime;
-    $severImpact['hospitalBedsByRequestedTime'] = $s_hospitalBedsByRequestedTime;
+    $impact['hospitalBedsByRequestedTime']      = intval($hospitalBedsByRequestedTime);
+    $severImpact['hospitalBedsByRequestedTime'] = intval($s_hospitalBedsByRequestedTime);
 
     $data['impact']       = $impact;
     $data['severeImpact'] = $severImpact;
@@ -89,8 +90,8 @@ function covid19ImpactEstimator($data_value)
     $data['impact']       = $impact;
     $data['severeImpact'] = $severImpact;
 
-    $dollarsInFlight   = (int) ( ($infectionsByRequestedTime * 0.65 * $avgDailyIncomeInUSD) / $timeToElapse );
-    $s_dollarsInFlight = (int) ( ($s_infectionsByRequestedTime * 0.65 * $avgDailyIncomeInUSD) / $timeToElapse );
+    $dollarsInFlight   = (int) ( ($infectionsByRequestedTime * $avgDailyIncomePopulation * $avgDailyIncomeInUSD) / $timeToElapse );
+    $s_dollarsInFlight = (int) ( ($s_infectionsByRequestedTime * $avgDailyIncomePopulation * $avgDailyIncomeInUSD) / $timeToElapse );
 
     $impact['dollarsInFlight']      = $dollarsInFlight;
     $severImpact['dollarsInFlight'] = $s_dollarsInFlight;
