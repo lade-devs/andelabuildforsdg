@@ -50,27 +50,24 @@ function covid19ImpactEstimator($data_value)
    $severeCasesByRequestedTime    = (int) ( (15/100) * $infectionsByRequestedTime );
    $s_severeCasesByRequestedTime  = (int) ( (15/100) * $s_infectionsByRequestedTime );
 
-//   $impact = array(
-//       'severeCasesByRequestedTime' => $severeCasesByRequestedTime
-//   );
 
-//   $impact['severeCasesByRequestedTime']      = $severeCasesByRequestedTime;
-//   $severImpact['severeCasesByRequestedTime'] = $s_severeCasesByRequestedTime;
+   $impact['severeCasesByRequestedTime']      = $severeCasesByRequestedTime;
+   $severImpact['severeCasesByRequestedTime'] = $s_severeCasesByRequestedTime;
 
-    $data['severeCasesByRequestedTime']       = $severeCasesByRequestedTime;
+   $data['impact']       = $impact;
+   $data['severeImpact'] = $severImpact;
+
+
+//    $availableBeds                 = (int) ( (95/100) * $totalHospitalBeds );
+//    $availableBeds                 = (int) ( (35/100) * $availableBeds );
+//    $hospitalBedsByRequestedTime   = $availableBeds - $severeCasesByRequestedTime;
+//    $s_hospitalBedsByRequestedTime = $availableBeds - $s_severeCasesByRequestedTime;
+//
+//    $impact['hospitalBedsByRequestedTime']      = $hospitalBedsByRequestedTime;
+//    $severImpact['hospitalBedsByRequestedTime'] = $s_hospitalBedsByRequestedTime;
+//
+//    $data['impact']       = $impact;
 //    $data['severeImpact'] = $severImpact;
-
-
-    $availableBeds                 = (int) ( (95/100) * $totalHospitalBeds );
-    $availableBeds                 = (int) ( (35/100) * $availableBeds );
-    $hospitalBedsByRequestedTime   = $availableBeds - $severeCasesByRequestedTime;
-    $s_hospitalBedsByRequestedTime = $availableBeds - $s_severeCasesByRequestedTime;
-
-    $impact['hospitalBedsByRequestedTime']      = $hospitalBedsByRequestedTime;
-    $severImpact['hospitalBedsByRequestedTime'] = $s_hospitalBedsByRequestedTime;
-
-    $data['impact']       = $impact;
-    $data['severeImpact'] = $severImpact;
 //
 //   // challenge three
 //    $casesForICUByRequestedTime   = (int) ( (5/100) * $infectionsByRequestedTime );
